@@ -242,10 +242,8 @@ class EncodeManageModel implements IEncodeManageModel {
 
         // DIR
         let dir: string = '';
-        if (typeof encodeCmd.suffix === 'undefined' && typeof queueItem.directory !== 'undefined') {
+        if (typeof queueItem.directory !== 'undefined') {
             dir = queueItem.directory;
-        } else if (outputFilePath !== null) {
-            dir = outputFilePath;
         }
 
         this.log.encode.info(`encodeCmd.suffix: ${encodeCmd.suffix}`);
@@ -394,8 +392,8 @@ class EncodeManageModel implements IEncodeManageModel {
                         outputFilePath === null || fileName === null
                             ? null
                             : typeof queueItem.directory === 'undefined'
-                            ? fileName
-                            : path.join(queueItem.directory, fileName),
+                                ? fileName
+                                : path.join(queueItem.directory, fileName),
                     fullOutputPath: outputFilePath,
                     mode: queueItem.mode,
                     removeOriginal: queueItem.removeOriginal,
